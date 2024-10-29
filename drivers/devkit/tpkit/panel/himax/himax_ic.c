@@ -1309,13 +1309,14 @@ static int himax_parse_dts(struct device_node *device, struct ts_kit_device_data
 	const char *modulename = NULL;
 	const char *projectid = NULL;
 	const char *tptesttype = NULL;
+	unsigned int value;
 	const char *chipname = NULL;
 	int read_val = 0;
 	TS_LOG_INFO("%s: parameter init begin\n", __func__);
 	if(NULL == device||NULL == chip_data) {
 		return -1;
 	}
-	retval = of_property_read_u32(device, "reg", &chip_data->ts_platform_data->client->addr);
+	retval = of_property_read_u32(device, "reg", &value);
 	if (retval) {
 		chip_data->ts_platform_data->client->addr = SLAVE_I2C_ADRR;
 		TS_LOG_INFO("Not define reg in Dts, use default\n");
